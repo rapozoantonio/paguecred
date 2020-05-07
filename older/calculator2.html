@@ -1,0 +1,55 @@
+<html>
+
+
+
+    <head>
+	<title>Web App for Simple Interest Calculation</title>
+    <script type="text/javascript" src="script.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <h1 align="center">Simulador</h1>
+<div>
+        Valor_Entrada: <input id="valor_entrada"><br/>
+        Numero Parcelas: <input id="numero_parcelas"><br/>
+
+        <button onclick="calculate()">Simular Agora</button>
+
+        <p id="resultado"></p>
+		</div>
+    </body>
+
+    <script type="text/javascript"> 
+            function calculate()
+            {
+                valor_inicial = document.getElementById("valor_entrada").value;
+                n_parcelas = document.getElementById("numero_parcelas").value;
+                result = document.getElementById("resultado");
+
+                var juros = 0
+
+                if(valor_inicial < 3000) {
+                 resultado.innerHTML = "Me desculpe, o valor minimo para saque é de R$3000,00. A equipe PagueCred está trabalhando para viabilizar mais opções de saque, se desejar, entre em contato conosco que vamos lhe notificar tão logo que a sua opção de saque esteja disponível";
+                    }
+                        else if(n_parcelas > 3){
+                        var juros = 0.14;
+                        var juros_parcelas = (n_parcelas-3)/100;
+                        var juros = juros + juros_parcelas;
+                        var valor_total = valor_inicial*(1+ juros);
+                        var resultado_simulador = valor_total/n_parcelas;
+                        resultado_simulador = resultado_simulador.toFixed(2);
+                        resultado.innerHTML = "Total a pagar: " + n_parcelas + "x de " + resultado_simulador;}
+                        else if (n_parcelas=3){
+                        var juros = 0.14;
+                        var valor_total = p*(1+ r);
+                        var resultado_simulador = valor_total/n_parcelas;
+                        resultado_simulador = resultado_simulador.toFixed(2);
+                        resultado.innerHTML = "Total a pagar: " + n_parcelas + "x de " + resultado_simulador;
+                        }
+
+            }
+    </script>
+    </script>
+</html>

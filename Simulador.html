@@ -1,0 +1,489 @@
+
+  <div> 
+  	<script>function interest(){var principal=document.getElementById('principal').value;var rate=document.getElementById('rate').value;var time=document.getElementById('time').value;var itype=document.getElementById('itype').value;var crate=document.getElementById('crate').value;var time=document.getElementById('time').value;var irate=rate/crate;var inttamt=document.getElementById('inttamt').value;var decimal=2;if( itype=='c' ){document.getElementById('inttamt').value=Math.round((document.getElementById('principal').value * Math.pow((1+irate/100),(time/12*crate))*1-principal*1 ) *100)/100;}if(itype=='s' ){document.getElementById('inttamt').value=Math.round(((document.getElementById('principal').value * rate * time/12)/100)*100)/100;}}
+// Widget Code by http://widgetcodes.com/
+	</script>
+
+		<style>#outer{width:300px;background:#fff;text-align:center;}
+		#cover{border:2px solid #111;border-radius:7px;box-shadow:inset 0 0 13px #888;padding:7px 0}
+		.main{table-layout:fixed;width:94%;border:0;border-collapse:collapse;margin:0 auto;}
+		.main td{padding:0 8px;vertical-align:middle;text-align:left;border:0;font:500 11px arial}
+		.main input{width:96%;border:1px solid #ccc;margin:2px 0;padding:0 2%;height:17px;text-align:right;font:500 11px arial}
+		.main select{width:100%;border:1px solid #ccc;margin:2px 0;background:#fff;height:18px;font:500 11px arial}.w50{width:50%}.main button{width:100%;font:600 12px arial;margin:2px 0;}</style>
+
+		<div id=outer>Interest Calculator<div id=cover><form name=intt><table class=main><col class=w50><col class=w40><tr><td>Principal Amount<td><input id=principal><tr><td>Interest Rate<td><input id=rate><tr><td>Interest Type<td><select id=itype><option value=s>Simple<option value=c selected>Compound</select><tr><td>Compounding Frequency<td><select id=crate><option value=12>Monthly<option value=4 selected>Quarterly<option value=2>Half-yearly<option value=1>Yearly</select><tr><td>Period (months)<td><input id=time><tr><td><button type=reset>Reset</button><td><button type=button onclick=interest()>Submit</button><tr><td>Interest Amount<td><input id=inttamt></table></form></div></div>
+
+
+
+<script type="text/javascript">
+	
+	var principal = 0;
+var interestRate = 0;
+var timesCompounded = 0;
+var termOfLoan = 0;
+var amount = 0;
+
+function simpleInterest() {
+  event.preventDefault();
+  var principal = parseFloat(document.getElementById("principalSimple").value);
+  var interestRate = parseFloat(document.getElementById("interestSimple").value);
+  interestRate = interestRate / 100;
+  var termOfLoan = parseFloat(document.getElementById("termSimple").value);
+  var simpleInt = principal * interestRate * termOfLoan;
+  var amount = (principal + simpleInt).toFixed(2);
+  document.getElementById("siOutput-01").innerHTML = "Interest: $" + simpleInt.toFixed(2);
+  document.getElementById("siOutput-02").innerHTML = "Total plus interest: $" + amount;
+}
+
+function compoundInterest() {
+  event.preventDefault();
+  var principal = parseFloat(document.getElementById("principalCompound").value);
+  var interestRate = parseFloat(document.getElementById("interestCompound").value);
+  interestRate = interestRate / 100;
+  var timesCompounded = parseFloat(document.getElementById("timesCompounded").value);
+  var termOfLoan = parseFloat(document.getElementById("termCompound").value);
+  var a = interestRate / timesCompounded;
+  var b = 1 + a;
+  var c = timesCompounded * termOfLoan;
+  var d = Math.pow(b, c);
+  var amount = (principal * d).toFixed(2);
+  document.getElementById("ciOutput-01").innerHTML = "Interest: $" + (amount - principal).toFixed(2);
+  document.getElementById("ciOutput-02").innerHTML = "Total plus interest: $" + amount;
+}
+</script>
+  </div>
+
+  <div> <div class="jumbotron">
+  <h1 class="text-center display-4">JavaScript Interest Calculator</h1>
+  <hr>
+  <div class="container" id="simple-interest">
+    <h3>Simple Interest</h3>
+    <p class="lead">A=i+(prt)</p>
+    <form id="siForm">
+      <div class="form-group">
+        <label for="principalSimple">Principal</label>
+        <input type="text" class="form-control" id="principalSimple" placeholder="Enter amount without dollar sign">
+      </div>
+      <div class="form-group">
+        <label for="interestSimple">Interest Rate</label>
+        <input type="text" class="form-control" id="interestSimple" placeholder="Example: 12%">
+      </div>
+      <div class="form-group">
+        <label for="termSimple">Term of Loan</label>
+        <input type="text" class="form-control" id="termSimple" placeholder="Example: 2 (must be in terms of years)">
+      </div>
+      <button type="submit" class="btn btn-primary" id="btnSimple" onclick="simpleInterest()">Submit</button>
+    </form>
+    <div>
+      <p class="lead mt-3" id="siOutput-01"></p>
+      <p class="lead mb-3" id="siOutput-02"></p>
+    </div>
+    <div class="text-center">
+      <input class="btn btn-secondary btn-lg" type="button" value="Reset" onClick="document.getElementById('siForm').reset()">
+    </div>
+  </div>
+  <br>
+  <hr>
+  <br>
+  <div class="container" div="compound-interest ">
+    <h3>Compound Interest</h3>
+    <p class="lead">A=p(1+(r/n))^(nt)</p>
+    <form id="ciForm">
+      <div class="form-group">
+        <label for="principalCompound">Principal</label>
+        <input type="text" class="form-control" id="principalCompound" placeholder="Enter amount without dollar sign">
+      </div>
+      <div class="form-group">
+        <label for="interestCompound">Interest Rate</label>
+        <input type="text" class="form-control" id="interestCompound" placeholder="Example: 12%">
+      </div>
+      <div class="form-group">
+        <label for="timesCompounded">Times Compounded per Year</label>
+        <input type="text" class="form-control" id="timesCompounded" placeholder="Example: 4 (means compounded quarterly)">
+      </div>
+      <div class="form-group">
+        <label for="termCompound">Term of Loan</label>
+        <input type="text" class="form-control" id="termCompound" placeholder="Example: 2 (must be in terms of years)">
+      </div>
+      <button type="submit" class="btn btn-primary" id="btnCompound" onclick="compoundInterest()">Submit</button>
+    </form>
+    <div>
+      <p class="lead mt-3" id="ciOutput-01"></p>
+      <p class="lead mb-3" id="ciOutput-02"></p>
+    </div>
+    <div class="text-center">
+      <input class="btn btn-secondary btn-lg" type="button" value="Reset" onClick="document.getElementById('ciForm').reset()">
+    </div>
+  </div>
+</div></div>
+
+
+
+</div>
+
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@rapozoantonio 
+Learn Git and GitHub without any code!
+Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
+
+
+danielstern
+/
+RateofReturnCalculator
+1
+11
+ Code Issues 0 Pull requests 0 Actions Projects 0 Wiki Security 0 Insights
+RateofReturnCalculator/calculator.html
+@danielstern danielstern first commit
+23b9d1c on May 12, 2013
+252 lines (169 sloc)  5.68 KB
+ 
+<!doctype HTML>
+<!-- Copyright 2013 danielstern.ca - feel free to examine, learn and apply -->
+
+<html ng-app >  <!-- the ng-app tag needs to be in your html, body or section for angular.js to work right -->
+  <script src="lib/angular/angular.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+  <style type="text/css">
+     
+	body {
+    color: #666;
+    background-color: #dedede }
+	
+	.netValueMode {
+	
+	  display:none;
+	
+	}
+	
+	.not-interestMode {
+	
+	  display:none;  
+	
+	}
+	
+	div {
+	
+	    margin-bottom: 10px;
+	
+	}
+	
+	.tiny {
+	
+	  font-size: 9px;
+	
+	}
+	
+  </style>
+  <title>Compound Rate of Return Calculator</title>
+<body ng-controller="calculator">
+<container ng-model='main' >
+  <h1>Angular.js Compound Rate of Return Calculator</h1>
+	<input ng-model='calculatorKind'  name='calculatorKind' value='netValueMode'  title='Yearly' type='radio'>Net Value Calculator
+	<input ng-model='calculatorKind' name='calculatorKind'  value='interestMode'  title='Monthly' type='radio'>Compound Rate of Return Calculator
+  <div>
+	<h2>{{calcname}}</h2>
+  </div>
+  <div>
+	Starting Value : $<input ng-model='startingValue' value='100' type='text'/>
+  </div>
+  <div>
+	Recurring Deposit: $<input ng-model='recurringPayment' type='text'>
+	<input ng-model='depositFreq'  name='depositFreq' value='yearly'  title='Yearly' type='radio'>Y</input>
+	<input ng-model='depositFreq' name='depositFreq'  value='monthly'  id='months' title='Monthly' type='radio'>M</input>
+  </div>
+  <div>
+	<span title='Compounded Monthly'>Interest Rate<sup>i</sup>:</span>
+	<span class='{{calculatorKind}}'>{{interestRate}}%</span> 
+	<input ng-model='interestRate' class='not-{{calculatorKind}}' type='text'>
+  </div>
+  <div>
+	Timeframe: <input ng-model='timeFrame' type='text'></input>
+	<input ng-model='timeKind'  name='timeKind' value='yearly'  title='Yearly' type='radio'>Y</input>
+	<input ng-model='timeKind' name='timeKind'  value='monthly'  id='months' title='Monthly' type='radio'>M</input>
+  </div>
+  <div>
+  Net Value at End: 
+  <span class='not-{{calculatorKind}}'> {{finalValue | currency}} </span> 
+  <input class='{{calculatorKind}}' ng-model='finalValue' type='text'>
+  <p class='{{calculatorKind}} tiny' type='text'>Note: Average compound rate of return is approximate.</p>
+  </div>
+  </container>
+</body>
+<script>
+
+ 
+  function calculator($scope) {
+  
+  // default values
+  $scope.calculatorKind = 'interestMode'
+  $scope.calcname = "Net Value After Calculator";
+  $scope.startingValue = 100;
+  $scope.interestRate = 2;
+  $scope.recurringPayment = 0;
+  $scope.timeFrame = 10;
+  $scope.timeKind = 'yearly';
+  $scope.depositFreq = 'monthly';
+  $scope.finalValue = getFinalValue($scope);
+  
+  $scope.calculatorPrecision = 100; 
+  // Affects the accuracy of the compound interest guess at the cost of processing power.
+  
+  console.log($scope.calculatorKind);
+  
+  function getFinalValue($scope) {
+    
+    var numMonths = $scope.timeFrame;
+	
+	if ($scope.timeKind == 'yearly') {
+	  numMonths *= 12;
+	}
+	
+	var p1 = Number($scope.startingValue);
+	var pf = p1;
+	
+	var pr = Number($scope.recurringPayment);	
+	var yearlyInterestRate = Number($scope.interestRate);
+	
+    var monthlyInterestRate =  yearlyInterestRate / 12;
+	
+	
+	var i = 1 + (monthlyInterestRate / 100);
+	
+	if (!p1) p1 = 0;
+	if (!i) i = 1;
+	if (!pr) pr = 0;
+	
+	
+    var monthsThru = 0;
+
+	for (var n = 0; n < numMonths; n++) {
+	   if ($scope.depositFreq == 'monthly') pf += pr;
+	   
+	   //pf = pf * i;     // for calculating payments at the beginning of the period
+	   
+	   if ($scope.depositFreq == 'yearly') {
+	   
+	      if (monthsThru == 0) pf += pr;
+		  monthsThru ++;
+		  if (monthsThru == 12) monthsThru = 0;
+	   
+	   }
+	   
+	   pf = pf * i;
+	   
+	}
+
+	
+	return pf.toFixed(2);
+      
+  }
+  
+  function getInterestRate($scope) {
+  
+    var numMonths = $scope.timeFrame;
+	
+	if ($scope.timeKind == 'yearly') {
+	  numMonths *= 12;
+	}
+
+	var apf = $scope.finalValue;
+	
+	var p1 = Number($scope.startingValue);
+	var pf = p1;		
+	var pr = Number($scope.recurringPayment);
+    var i = 1.01;	
+	
+	if (pf < p1) return 0;
+	
+	var monthsThru = 12;
+	
+	var guessI = i;
+	
+	var precision;
+	var targetPrecision = 10; // less than this amount apart	
+
+	var count =   $scope.calculatorPrecision;
+	var adjustmentAmount = 0.01;
+	
+	while (count > 0)
+	{
+	  
+		for (var n = 0; n < numMonths; n++) {
+		   if ($scope.depositFreq == 'monthly') pf += pr;
+		   
+		   
+		   if ($scope.depositFreq == 'yearly') {
+		   
+			  if (monthsThru == 0) pf += pr;
+			  monthsThru ++;
+			  if (monthsThru == 12) monthsThru = 0
+		   
+		   }  
+		   
+			pf = pf * guessI;
+		   
+		}
+
+		if (apf > pf) {
+		
+		   guessI += adjustmentAmount;
+		
+		}
+		else {
+		
+		  guessI -= adjustmentAmount;
+		
+		}
+		precision = Math.abs(pf - apf);
+		
+		console.log('Precision?' + precision);
+		
+		adjustmentAmount *= 0.9;
+		pf = p1;	
+		
+		count--;
+	}
+		
+	
+	i = ((guessI - 1) * 12) * 100;	
+	return i.toFixed(2);
+      
+  }
+  
+  $scope.$watch('startingValue+timeFrame+recurringPayment+timeKind+depositFreq+endValueInput', function (value) {
+    if ($scope.calculatorKind == 'netValueMode') {
+        $scope.finalValue = getFinalValue($scope);
+	}
+	else {
+	  $scope.interestRate = getInterestRate($scope);
+
+	}
+    
+  })
+	
+  $scope.$watch('finalValue', function (value) {
+  
+	if ($scope.calculatorKind != 'netValueMode') {
+        $scope.interestRate = getInterestRate($scope);
+	}})
+	
+   $scope.$watch('interestRate', function (value) {
+  
+	if ($scope.calculatorKind == 'netValueMode') {
+        $scope.finalValue = getFinalValue($scope);
+	}})
+	
+	 $scope.$watch('calculatorKind', function (value) {
+  
+	if ($scope.calculatorKind == 'netValueMode') {
+        scope.calcname = "Net Value After Calculator";
+	}
+	else {	
+	    $scope.calcname = "Compound Rate of Return Calculator";
+    }
+	
+	})
+}
+
+
+</script>
+
+</html>
+© 2020 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+
+
+<!DOCTYPE html>
+<html>
+<head>
+ 
+</head>
+   
+    <body>
+          <form>
+                    <div>
+                        <h2>Compound Interest Calculator</h2>
+                        <P style="color:blue;"><strong>Enter your Principal Amount :</strong><input type="text" id="getPrincipalValue" name="prncipal"  placeholder="Principal" ></P>
+                        <P style="color:blue;"><strong>Enter the interest Rate :</strong><input type="text" id="getInterestRate" name="interest"  placeholder="Interest Rate" ></P>
+                        <P style="color:blue;"><strong>Enter the Interest paid in " n" amount of  year :</strong> <input type="text" id="getYear" name="year"  placeholder="year" ></P>
+                        <P style="color:blue;"><strong>Number of Times interest paid per year? :</strong><input type="text" id="getTiming" name="timing"  placeholder="number of time paid" ></P>
+                        <P>
+                        <input type="button" value="Calculate" id="" onclick="compoundInterest(this.principal , this.interest , this.nyear , this.ntime);"/></P>
+               </div>
+     
+                </form>
+         
+      
+         <p id="outputPrincipal"> </p>
+         <p id="outputInterest"> </p>
+         <p id="outputYear"> </p>
+         <p id="outputtime"> </p>
+         <p id="compounded"> </p>
+         
+         <script type="text/javascript">
+                   function compoundInterest(principal, interest ,nyear,ntime ) {
+                 
+                            principal = document.getElementById("getPrincipalValue").value;
+                            interest = document.getElementById("getInterestRate").value;
+                            nyear = document.getElementById("getYear").value;
+                            ntime = document.getElementById("getTiming").value;               
+                             
+ 
+                          var resultCompound  = ( principal* Math.pow((1 + (interest/(ntime*100))), (ntime*nyear)));
+                
+                            document.getElementById("outputPrincipal").innerHTML = "Principal Enter is " + principal;
+                            document.getElementById("outputInterest").innerHTML = "Interest Enter is " + interest;
+                            document.getElementById("outputInterest").innerHTML = "Number of Years Enter " + nyear;
+                            document.getElementById("outputtime").innerHTML = "Number of time interestpaid per year " + ntime;
+                            document.getElementById("compounded").innerHTML = "Interest Plus Principal " + resultCompound;
+                   }
+                 
+           </script>
+          
+    </body>
+
+
+    <!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+        <title>Simple Interest</title>
+    </head>
+    <script type="text/javascript">
+    function simpl()
+    {
+    var p,r,t;
+    p=parseFloat(prompt("Please Enter Principle Amount"));
+    r=parseFloat(prompt("Please Enter Rate Amount"));
+    t=parseFloat(prompt("Please Enter Time(year)"));
+    var si=(p*r*t)/100;
+    document.write("Simple Interest (calculated anually) is: "+si);
+    }
+    </script>
+    <body>
+    <center>
+        <input type="button" value="Calculate Simple Interest" onclick="simpl()" />
+        </center>
+    </body>
+</html>
+    
+  
+</html>

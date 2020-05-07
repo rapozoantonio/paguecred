@@ -1,0 +1,73 @@
+<div class="jumbotron">
+  <h1 class="text-center display-4">JavaScript Interest Calculator</h1>
+  <hr>
+  <div class="container" id="simple-interest">
+    <h3>Simple Interest</h3>
+    <p class="lead">A=i+(prt)</p>
+    <form id="siForm">
+      <div class="form-group">
+        <label for="valor_entrada">valor_entrada/ Principal</label>
+        <input type="text" class="form-control" id="valor_entrada" placeholder="Enter amount without dollar sign">
+      </div>
+      <div class="form-group">
+        <label for="interestSimple">Interest Rate</label>
+        <input type="text" class="form-control" id="interestSimple" placeholder="Example: 12%">
+      </div>
+      <div class="form-group">
+        <label for="numero_parcelas">numero_parcelas/ Term of Loan</label>
+        <input type="text" class="form-control" id="numero_parcelas" placeholder="Example: 2 (must be in terms of years)">
+      </div>
+      <button type="submit" class="btn btn-primary" id="btnSimple" onclick="simpleInterest()">Submit</button>
+    </form>
+    <div>
+      <p class="lead mt-3" id="siOutput-01"></p>
+      <p class="lead mb-3" id="siOutput-02"></p>
+    </div>
+    <div class="text-center">
+      <input class="btn btn-secondary btn-lg" type="button" value="Reset" onClick="document.getElementById('siForm').reset()">
+    </div>
+  </div>
+  <br>
+  <hr>
+  <br>
+
+<script type="text/javascript">
+  
+var principal = 0;
+var interestRate = 0;
+var termOfLoan = 0;
+var amount = 0;
+
+function simpleInterest() {
+  event.preventDefault();
+  var principal = parseFloat(document.getElementById("valor_entrada").value);
+
+  var interestRate = parseFloat(document.getElementById("interestSimple").value);
+  interestRate = interestRate / 100;
+
+
+
+  var termOfLoan = parseFloat(document.getElementById("numero_parcelas").value);
+
+    // taxa de juros ajustada para o numero de parcelas
+
+  if(termOfLoan = 12){var interestRate = 0.23
+
+  var simpleInt = principal * interestRate;
+
+  var amount = (principal + simpleInt).toFixed(2);
+  }
+
+
+
+
+
+
+
+  document.getElementById("siOutput-01").innerHTML = "Interest: R$" + simpleInt.toFixed(2);
+
+  document.getElementById("siOutput-02").innerHTML = "Total plus interest: R$" + amount/termOfLoan;
+}
+
+
+</script>
