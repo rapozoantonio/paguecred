@@ -56,7 +56,7 @@
                 <div class="text">
                   <span class="subheading">Olá, seja bem vindo a PagueCred</span>
                   <h1 class="mb-4 mt-3">Como<span> funciona?</span></h1>
-                  <p>Nossa missão é descomplicar sua vida, então toda burocracia é bem simples, de fácil entendimento e ágil.<br>Basta fazer sua simulaçãoem nosso site e enviar a documentação necessária.<br>Caso aprovado, um de nossos representantes entrará em contato para agendar a visita presencial, assinar o contrato, passar o cartão e pronto!</p>
+                  <p>Nossa missão é descomplicar sua vida, então toda burocracia é bem simples, de fácil entendimento e ágil.<br>Basta fazer sua simulação e enviar a documentação necessária.<br>Após aprovado, um de nossos representantes entrará em contato para agendar a visita presencial, assinar o contrato, passar o cartão e pronto!</p>
                   
                   <p><a href="#contact-section" class="btn btn-primary px-5 py-3 mt-3">Entre em contato</a></p>
                 </div>
@@ -407,26 +407,19 @@
                   var cur_re = /\D*(\d+|\d.*?\d)(?:\D+(\d{2}))?\D*$/;
                   var parts = cur_re.exec(p);
                   p = parseFloat(parts[1].replace(/\D/,'')+'.'+(parts[2]?parts[2]:'00'));
+                  var taxas_de_juros = {
+                  3:0.16,4:0.18,5:0.20,6:0.21,7:0.23,8:0.24,9:0.26,10:0.27,11:0.29,12:0.30}
+
 
                   if(p < 3000) {
                           resultado.innerHTML = "Entre em contato conosco para que possamos lhe ajudar com o valor pretendido.<br> <p>Valor mín.: R$ 3.000,00 <br> Valor máx.: R$999.999,99</p> ";
                           }
-                        else if(n > 3){
-                          var r = 0.14;
-                          var i_n = (n-3)/100;
-                          var r = r + i_n;
+                        else if(n > 2){
+                          var r = 0.0154*n + 0.1185;
                           var i = p*(1+ r);
                           var resultado_simulador = i/n;
                           resultado_simulador = resultado_simulador.toFixed(2);
                           resultado.innerHTML = "Total a pagar: " + n + "x de " + resultado_simulador;}
-                        else if (n=3){
-                          var r = 0.14;
-                          var i = p*(1+ r);
-                          var resultado_simulador = i/n;
-                          resultado_simulador = resultado_simulador.toFixed(2);
-                          resultado.innerHTML = "Total a pagar:<br> " + n + "x de " + resultado_simulador;
-                          }
-
                     }
               </script>
 
@@ -435,7 +428,7 @@
               <div class="counter-wrap ftco-animate d-flex mt-md-3">
                 <div class="text p-4 bg-primary">
                   <p class="mb-0">
-                    <span class="number" data-number="259367">0</span>
+                    <span class="number" data-number="593447">0</span>
                     <span>Crédito disponibilizado</span>
                   </p>
                 </div>
