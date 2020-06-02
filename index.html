@@ -392,13 +392,13 @@
                                                               var resultado_simulador = i/n;
                                                               resultado_simulador = resultado_simulador.toFixed(2);
                                                               resultado.innerHTML = "Total a pagar: " + n + "x de " + resultado_simulador;}
-                                                            else if(p > 1999.99){
+                                                            else if(p > 1999.99 && p < 3000){
                                                               var r = 0.0233*n + 0.142;
                                                               var i = p*(1+ r);
                                                               var resultado_simulador = i/n;
                                                               resultado_simulador = resultado_simulador.toFixed(2);
                                                               resultado.innerHTML = "Total a pagar: " + n + "x de " + resultado_simulador;}
-                                                      if(p > 999.99){
+                                                      if(p > 999.99 && p < 2000){
                                                               var r = 0.0281*n + 0.2325;
                                                               var i = p*(1+ r);
                                                               var resultado_simulador = i/n;
